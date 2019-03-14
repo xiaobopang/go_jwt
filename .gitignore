@@ -10,3 +10,6 @@ swagger
 mem-64899.memprof
 conf/app.conf
 info.log
+get_userinfo.html
+share.html
+conf/app.conf

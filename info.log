@@ -20,3 +20,5 @@ Header Origin:
 Header Origin:  
 [ORM]2019/03/06 14:25:07  -[Queries/default] - [  OK / db.QueryRow /     2.9ms] - [SELECT `id`, `name`, `email`, `age`, `created_at`, `updated_at` FROM `user` WHERE `id` = ? ] - `2`
 2019/03/06 14:25:07.905 [1;44m[D] [server.go:2741]  |      127.0.0.1|[43m 400 [0m|   4.193023ms|   match|[44m GET     [0m /v1/user/2   r:/v1/user/:uid[0m
+./go_jwt: ./go_jwt: cannot execute binary file
+./go_jwt: ./go_jwt: cannot execute binary file

@@ -34,6 +34,9 @@ func Md5(str string) string {
 }
 
 func Sha256(s string) string {
+	if s == "" {
+		return ""
+	}
 	h := sha256.New()
 	h.Write([]byte(s))
 	return fmt.Sprintf("%x", h.Sum(nil))

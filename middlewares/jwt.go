@@ -47,7 +47,7 @@ func ValidateToken(ctx *context.Context) {
 	case nil: // no error
 		if !token.Valid { // but may still be invalid
 			ctx.Output.SetStatus(401)
-			resBytes, err := json.Marshal(controllers.OutResponse(401, nil, "token验证失败"))
+			resBytes, err := json.Marshal(controllers.OutResponse(401, nil, "非法请求，请重新登录"))
 			ctx.Output.Body(resBytes)
 			if err != nil {
 				panic(err)
@@ -58,14 +58,14 @@ func ValidateToken(ctx *context.Context) {
 		switch vErr.Errors {
 		case jwt.ValidationErrorExpired:
 			ctx.Output.SetStatus(401)
-			resBody, err := json.Marshal(controllers.OutResponse(401, nil, "token已过期"))
+			resBody, err := json.Marshal(controllers.OutResponse(401, nil, "登录已过期，请重新登录"))
 			ctx.Output.Body(resBody)
 			if err != nil {
 				panic(err)
 			}
 		default:
 			ctx.Output.SetStatus(401)
-			resBytes, err := json.Marshal(controllers.OutResponse(401, nil, "token不合法"))
+			resBytes, err := json.Marshal(controllers.OutResponse(401, nil, "非法请求，请重新登录"))
 			ctx.Output.Body(resBytes)
 			if err != nil {
 				panic(err)
@@ -73,7 +73,7 @@ func ValidateToken(ctx *context.Context) {
 		}
 	default: // something else went wrong
 		ctx.Output.SetStatus(401)
-		resBytes, err := json.Marshal(controllers.OutResponse(401, nil, "token验证失败"))
+		resBytes, err := json.Marshal(controllers.OutResponse(401, nil, "非法请求，请重新登录"))
 		ctx.Output.Body(resBytes)
 		if err != nil {
 			panic(err)

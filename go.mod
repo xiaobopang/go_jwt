@@ -8,4 +8,5 @@ require (
 	github.com/gomodule/redigo v2.0.0+incompatible
 	github.com/gorilla/websocket v1.4.0
 	github.com/smartystreets/goconvey v0.0.0-20190222223459-a17d461953aa
+	github.com/ulule/limiter/v3 v3.1.0
 )

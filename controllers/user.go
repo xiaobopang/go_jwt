@@ -108,11 +108,19 @@ func (u *UserController) Redis() {
 // @Success 200 {string} login success
 // @router /login [post]
 func (u *UserController) Login() {
+	username := u.GetString("username")
+	password := u.GetString("password")
 	userId, _ := u.GetInt("id")
 
-	token := libs.GenerateToken(userId, u.Ctx.Input.Domain())
-	u.Data["json"] = OutResponse(200, map[string]string{"token": token}, "")
-	u.ServeJSON()
+	if username != "" && password != "" {
+		//fmt.Println("加密后", libs.Sha256(libs.Md5(password)+beego.AppConfig.String("jwt::salt")))
+		token := libs.GenerateToken(userId, u.Ctx.Input.Domain())
+		u.Data["json"] = OutResponse(200, map[string]string{"token": token}, "")
+		u.ServeJSON()
+	} else {
+		u.Data["json"] = OutResponse(400, nil, "用户名或密码不能为空")
+		u.ServeJSON()
+	}
 }
 
 // @Title parseJwt

@@ -6,8 +6,6 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/chanxuehong/wechat/util"
-
 	"github.com/astaxie/beego"
 	"github.com/chanxuehong/wechat/mp/core"
 	"github.com/chanxuehong/wechat/mp/jssdk"
@@ -16,15 +14,16 @@ import (
 	"github.com/chanxuehong/wechat/mp/message/callback/response"
 	mpoauth2 "github.com/chanxuehong/wechat/mp/oauth2"
 	"github.com/chanxuehong/wechat/oauth2"
+	"github.com/chanxuehong/wechat/util"
 )
 
 const (
-	wxAppId     = "wx038a0dc5a52a97df"
-	wxAppSecret = "cf8a6fc628c00ecedb657b5b97bc4362"
+	wxAppId     = "" //your appId
+	wxAppSecret = "" //your appSecret
 
-	wxOriId         = "gh_4a3f7b7d54ae"
-	wxToken         = "go_jwt"
-	wxEncodedAESKey = "fLuzDXZOYq5IauW3J94mX8Tx0B9gfqoRRr4ihfhgk7n"
+	wxOriId         = "" //原始ID
+	wxToken         = "" //token
+	wxEncodedAESKey = ""
 )
 
 var (
@@ -87,12 +86,12 @@ func defaultEventHandler(ctx *core.Context) {
 
 // wxCallbackHandler 是处理回调请求的 http handler.
 func (w *WechatController) WxCallbackHandler() {
-	log.Printf("回调处理:\n%s\n", w.Ctx.Request)
+	//log.Printf("回调处理:\n%s\n", w.Ctx.Request)
 	msgServer.ServeHTTP(w.Ctx.ResponseWriter, w.Ctx.Request, nil)
 }
 
 // 通过code获取用户openid及用户基本信息
-// @router /get_token [post]
+// @router /get_userinfo [post]
 func (w *WechatController) GetUserInfo() {
 	code := w.GetString("code")
 
@@ -127,16 +126,16 @@ func (w *WechatController) GetSign() {
 
 	var ticketServer = jssdk.NewDefaultTicketServer(wechatClient)
 
-	//	fmt.Println(base.GetCallbackIP(wechatClient))
+	//fmt.Println(base.GetCallbackIP(wechatClient))
 
 	jsapiTicket, err := ticketServer.Ticket()
 	if err != nil {
 		fmt.Println(err)
 	}
-	log.Printf("jsapiTicket: %+v\r\n", jsapiTicket)
+
 	nonceStr := util.NonceStr()
-	timestamp := strconv.FormatInt(time.Now().Unix(), 10)
-	url := "https://www.unclepang.com"
+	timestamp := strconv.FormatInt(time.Now().UTC().Unix(), 10)
+	url := "http://127.0.0.1/share.html"
 
 	signature := jssdk.WXConfigSign(jsapiTicket, nonceStr, timestamp, url)
 
