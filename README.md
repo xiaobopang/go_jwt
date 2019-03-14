@@ -1,18 +1,20 @@
 ## Introduce
 
-   这是一个基于beego框架搭建的一个小项目，主要功能包含如下：
+   这是一个基于beego框架搭建的一个小项目，集成如下能力：
    
    1. Websocket
    
-   2. 微信公众号，小程序
+   2. 微信公众号开发
    
-   3. jwt相关
+   3. jwt验证
    
    4. Redis
    
    5. Mysql
    
    6. ElasticSearch (未集成)
+   
+   7. http ratelimit (http访问频率限制)
  
  
  
