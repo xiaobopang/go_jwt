@@ -1,4 +1,11 @@
 package controllers
+/*
+ * Created Date: Wednesday March 13th 2019
+ * Author: Pangxiaobo
+ * Last Modified: Wednesday March 13th 2019 2:52:45 pm
+ * Modified By: the developer formerly known as Pangxiaobo at <10846295@qq.com>
+ * Copyright (c) 2019 Pangxiaobo
+ */
 
 import (
 	"fmt"

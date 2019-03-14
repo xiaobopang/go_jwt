@@ -1,5 +1,13 @@
 package libs
 
+/*
+ * Created Date: Wednesday March 13th 2019
+ * Author: Pangxiaobo
+ * Last Modified: Wednesday March 13th 2019 2:52:45 pm
+ * Modified By: the developer formerly known as Pangxiaobo at <10846295@qq.com>
+ * Copyright (c) 2019 Pangxiaobo
+ */
+
 const (
 	WELCOME            = 1
 	SUCCESS            = 200
@@ -20,6 +28,7 @@ const (
 	ERROR_AUTH_CHECK_TOKEN_TIMEOUT = 20002
 	ERROR_AUTH_TOKEN               = 20003
 	ERROR_AUTH                     = 20004
+	TOO_MANY_REQUESTS              = 429
 )
 
 var MsgFlags = map[int]string{
@@ -42,6 +51,7 @@ var MsgFlags = map[int]string{
 	ERROR_AUTH_CHECK_TOKEN_TIMEOUT: "Token已超时",
 	ERROR_AUTH_TOKEN:               "Token生成失败",
 	ERROR_AUTH:                     "Token错误",
+	TOO_MANY_REQUESTS:              "请不要频繁访问",
 }
 
 func GetMsg(code int) string {
