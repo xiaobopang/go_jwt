@@ -138,3 +138,12 @@ func GetLocalIp() string {
 	}
 	return "127.0.0.1"
 }
+
+// 字符串转数组
+func StrToArray(str, prefix string) interface{} {
+	if str == "" {
+		return nil
+	}
+	//strings.Join(strArr, ",")数组转字符串
+	return strings.Split(str, prefix)
+}
